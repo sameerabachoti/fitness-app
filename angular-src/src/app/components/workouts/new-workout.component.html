@@ -1,0 +1,11 @@
+<form name="form" (submit)="addWorkout()">
+  <h2>Add A New Workout</h2><br> 
+  <div class="form-group">
+    Name: <input type="text" [(ngModel)]="name" name="name" class="form-control">
+    Category: <input type="text" [(ngModel)]="category" name="category" class="form-control">
+    Calories: <input type="text" [(ngModel)]="calories" name="calories" class="form-control">
+    Notes: <input type="text" [(ngModel)]="notes" name="notes" class="form-control">
+  </div>
+  <br><br>
+  <input type="submit">
+</form>
