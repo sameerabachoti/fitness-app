@@ -15,12 +15,13 @@ export class WorkoutsComponent implements OnInit {
   category: String; 
   calories: String; 
   notes: String;
+  user_id: Number;
 
   workouts: any = [];
 
-  constructor(private WorkoutsService:WorkoutsService,
-  private router:Router, 
-  private flashMessage:FlashMessagesService) { }
+  constructor(public WorkoutsService:WorkoutsService,
+  public router:Router, 
+  public flashMessage:FlashMessagesService) { }
 
   ngOnInit() {
 
@@ -41,6 +42,7 @@ export class WorkoutsComponent implements OnInit {
   }
 
   deleteWorkout(id){
+    console.log(id);
     var workouts = this.workouts;
     this.WorkoutsService.deleteWorkout(id).subscribe(data => {
         
@@ -53,6 +55,52 @@ export class WorkoutsComponent implements OnInit {
 
         this.flashMessage.show('Workout has been deleted', {cssClass: 'alert-success', timeout: 5000});
     });
+    window.location.reload();
   }
+
+  updateWorkout(id){
+  
+    var _workout = {
+      id: id,
+      name: this.name, 
+      category: this.category, 
+      calories: this.calories, 
+      notes: this.notes,
+      user_id: JSON.parse(localStorage.getItem("user"))["id"]
+    }
+
+    //console.log(_workout);
+
+    if(_workout.id !== undefined && _workout.name !== undefined && _workout.category !== undefined && _workout.calories !== undefined && _workout.notes !== undefined && _workout.user_id !== undefined){
+      this.WorkoutsService.updateWorkout(_workout).subscribe(data => {
+          
+          this.flashMessage.show('Workout has been updated', {cssClass: 'alert-success', timeout: 5000});
+      });
+    }
+    else{
+         this.flashMessage.show('Please fill all fields', {cssClass: 'alert-danger', timeout: 5000});
+    }
+
+  }
+
+
+  /*updateWorkout(id){
+    console.log(this);
+    var _workout = {
+      id: id, 
+      name: this.name, 
+      category: this.category, 
+      calories: this.calories, 
+      notes: this.notes
+    }
+    //console.log(_workout);
+    this.UpdateWorkoutService.updateWorkout(_workout).subscribe(data => {
+        
+        console.log(data);
+
+        //this.flashMessage.show('Workout has been updated', {cssClass: 'alert-success', timeout: 5000});
+    });*/
+
+  //}
 
 }

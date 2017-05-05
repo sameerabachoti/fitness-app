@@ -22,4 +22,11 @@ export class WorkoutsService {
     return this.http.delete('http://localhost:3000/workouts/workout/'+id).map(res => res.json());
   }
 
+  updateWorkout(workout){
+    console.log(workout);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('http://localhost:3000/workouts/workout/'+workout.id, JSON.stringify(workout),{headers:headers}).map(res => res.json());
+  }
+
 }

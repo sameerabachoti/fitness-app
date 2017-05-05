@@ -8,7 +8,7 @@
       <p class="card-text">{{workout.calories}}</p>
       <p class="card-text">{{workout.notes}}</p>
       <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger"><br><br>
-      <a type="button" href="/update-workout" value="Update" class="btn btn-primary">Update</a>
+      <input type="button" [routerLink]="['/update-workout', workout._id]" (click)="updateWorkout(workout._id)" value="Update" class="btn btn-primary">
       <br>
     </div>
   </div>

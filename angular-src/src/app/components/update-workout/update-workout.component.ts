@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdateWorkoutService } from '../../services/update-workout.service';
+import { WorkoutsService } from '../../services/workouts.service';
+import { WorkoutsComponent } from '../workouts/workouts.component';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
 
@@ -8,16 +10,19 @@ import {Router} from '@angular/router';
   templateUrl: './update-workout.component.html',
   styleUrls: ['./update-workout.component.css']
 })
-export class UpdateWorkoutComponent implements OnInit {
+export class UpdateWorkoutComponent extends WorkoutsComponent implements OnInit {
 
   name: String; 
   category: String; 
   calories: String; 
   notes: String;
 
-  constructor(private UpdateWorkoutService:UpdateWorkoutService,
-  private router:Router, 
-  private flashMessage:FlashMessagesService) { }
+  
+
+  constructor(public WorkoutsService:WorkoutsService,
+ router:Router, 
+ flashMessage:FlashMessagesService
+  ) { super(WorkoutsService, router, flashMessage); }
 
   ngOnInit() {
   	/*this.UpdateWorkoutService.UpdateWorkout(id).subscribe(data => {
@@ -36,7 +41,7 @@ export class UpdateWorkoutComponent implements OnInit {
   	console.log(id);
   }
 
-  updateWorkout(event){
+  /*updateWorkout(event){
     console.log(this);
     var _workout = {
       name: this.name, 
@@ -45,13 +50,14 @@ export class UpdateWorkoutComponent implements OnInit {
       notes: this.notes
     }
     //console.log(_workout);
-    this.UpdateWorkoutService.updateWorkout(_workout).subscribe(data => {
+    this.WorkoutsService.updateWorkout(_workout).subscribe(data => {
         
         console.log(data);
 
         //this.flashMessage.show('Workout has been updated', {cssClass: 'alert-success', timeout: 5000});
     });
 
-  }
+  }*/
 
 }
+

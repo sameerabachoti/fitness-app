@@ -75,6 +75,8 @@ router.put('/workout/:id', (req, res, next) => {
 		updatedWorkout.length = workout.length;
 	
 		updatedWorkout.notes = workout.notes;
+
+		updatedWorkout.user_id = workout.user_id;
 	
 
 		MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {

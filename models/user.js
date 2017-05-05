@@ -1,10 +1,3 @@
-//in mongodb you don't have to go into the table and create every column, single field type, etc. 
-//mongodb is much more flexible 
-//this file is the model, just like in Rails. 
-//defining the function in this file and them calling them in routes/users.js
-//bring in bcrypt for encryption 
-//bring in the config file for database
-//create user schema
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
@@ -53,6 +46,7 @@ module.exports.addUser = function(newUser, callback){
 		}); 
 	});
 }
+
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){
 	bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
