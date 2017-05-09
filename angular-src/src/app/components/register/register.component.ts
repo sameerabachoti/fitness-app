@@ -48,43 +48,33 @@ export class RegisterComponent implements OnInit {
 
 		// Check for Unique Email
 		this.authService.checkEmail(user).subscribe(data => {
-			console.log(data);
 			if(data.success === false){
 				this.flashMessage.show('This email has already been taken', {cssClass: 'alert-danger', timeout: 3000});
 			}
 			else{
-				//Register User
-				this.authService.registerUser(user).subscribe(data => {
-					if(data.success){
-						this.flashMessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout: 3000});
-						this.router.navigate(['/login']);
-					} else{
-						this.flashMessage.show('PSomething went wrong', {cssClass: 'alert-danger', timeout: 3000});
-						this.router.navigate(['/register']);
+				// Check for Unique Username
+				this.authService.checkUsername(user).subscribe(data => {
+					if(data.success === false){
+						this.flashMessage.show('This username has already been taken', {cssClass: 'alert-danger', timeout: 3000});
 					}
-				});
+					else{
+						//Register User
+						this.authService.registerUser(user).subscribe(data => {
+							if(data.success){
+								this.flashMessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout: 3000});
+								this.router.navigate(['/login']);
+							} else{
+								this.flashMessage.show('PSomething went wrong', {cssClass: 'alert-danger', timeout: 3000});
+								this.router.navigate(['/register']);
+							}
+						});
+					}
+		});
+
 			}
 		});
 
-		// Check for Unique Username
-		this.authService.checkUsername(user).subscribe(data => {
-			if(data.success === false){
-				this.flashMessage.show('This username has already been taken', {cssClass: 'alert-danger', timeout: 3000});
-			}
-			else{
-				//Register User
-				this.authService.registerUser(user).subscribe(data => {
-					if(data.success){
-						this.flashMessage.show('You are now registered and can log in', {cssClass: 'alert-success', timeout: 3000});
-						this.router.navigate(['/login']);
-					} else{
-						this.flashMessage.show('PSomething went wrong', {cssClass: 'alert-danger', timeout: 3000});
-						this.router.navigate(['/register']);
-					}
-				});
-			}
-		});
-
+	
 
 
 	}
