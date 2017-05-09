@@ -24,7 +24,17 @@ export class UpdateWorkoutComponent extends WorkoutsComponent implements OnInit 
   ) { super(WorkoutsService, router, flashMessage); }
 
   ngOnInit() {
+    var url = window.location.pathname;
+      var id = url.substring(url.lastIndexOf('/') + 1);
 
+      this.WorkoutsService.getWorkout(id).subscribe(workout => {
+        this.name = workout.name;
+        this.category = workout.category; 
+        this.length = workout.length; 
+        this.calories = workout.calories; 
+        this.notes = workout.notes; 
+        
+      });
   }
 
   updateWorkout(){

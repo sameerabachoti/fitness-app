@@ -1,3 +1,9 @@
 hr{
 	border-top: 1px solid black;
 }
+
+h4{
+ 	cursor: pointer;
+	color: #191970;
+	font-weight: bold;
+}

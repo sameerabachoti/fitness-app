@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row" *ngFor="let workout of workouts">
     <div class="card card-block">
-      <h4 class="card-title" [routerLink]="['/show-workout', workout._id]">{{ workout.name }}</h4><br><br>
+      <h4 class="card-title" [routerLink]="['/show-workout', workout._id]">{{ workout.name }}</h4><br>
       <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger">
       <hr>
       <br>
