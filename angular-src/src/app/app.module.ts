@@ -19,6 +19,7 @@ import {UpdateWorkoutService} from './services/update-workout.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import { NewWorkoutComponent } from './components/new-workout/new-workout.component';
 import { UpdateWorkoutComponent } from './components/update-workout/update-workout.component';
+import { ShowWorkoutComponent } from './components/show-workout/show-workout.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'workouts', component: WorkoutsComponent},
   {path: 'new-workout', component: NewWorkoutComponent},
-  {path: 'update-workout/:id', component: UpdateWorkoutComponent}
+  {path: 'update-workout/:id', component: UpdateWorkoutComponent},
+  {path: 'show-workout/:id', component: ShowWorkoutComponent}
 ]
 
 
@@ -37,7 +39,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    WorkoutsComponent, NewWorkoutComponent, UpdateWorkoutComponent
+    WorkoutsComponent, NewWorkoutComponent, UpdateWorkoutComponent, ShowWorkoutComponent
   ],
   imports: [
     BrowserModule,

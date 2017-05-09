@@ -10,7 +10,6 @@ export class UpdateWorkoutService {
   constructor(private http: Http) { }
 
   updateWorkout(workout){
-  	console.log(workout);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.put('http://localhost:3000/workouts/workout/'+workout._id, JSON.stringify(workout),{headers:headers}).map(res => res.json());

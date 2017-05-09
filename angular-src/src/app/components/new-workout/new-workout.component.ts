@@ -14,6 +14,7 @@ export class NewWorkoutComponent implements OnInit {
   name: String; 
   category: String; 
   calories: String; 
+  length: String;
   notes: String;
 
   workouts: any = [];
@@ -31,6 +32,7 @@ export class NewWorkoutComponent implements OnInit {
     var workout = {
   		name: this.name,
   		category: this.category, 
+      length: this.length,
   		calories: this.calories, 
   		notes: this.notes, 
       user_id: JSON.parse(localStorage.getItem("user"))["id"]

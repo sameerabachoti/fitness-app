@@ -1,0 +1,11 @@
+<h3>{{workout.name}}</h3>
+
+<p class="card-text">{{workout.category}}</p>
+<p class="card-text">{{workout.calories}}</p>
+<p class="card-text">{{workout.length}}</p>
+<p class="card-text">{{workout.notes}}</p>
+<br><br>
+<input type="button" [routerLink]="['/update-workout', workout._id]" value="Update" class="btn btn-primary">
+<br><br>
+
+<a [routerLink]="['/workouts']">Back to workouts</a>

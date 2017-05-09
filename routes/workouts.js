@@ -63,16 +63,17 @@ router.get('/workout/:id', (req, res, next) => {
 //Update workout
 router.put('/workout/:id', (req, res, next) => {
 
-	var workout = req.body; 
+	var workout = req.body;
+
 	var updatedWorkout = {};
 
 		updatedWorkout.name = workout.name;
 	
-
 		updatedWorkout.category = workout.category;
-	
 
 		updatedWorkout.length = workout.length;
+
+		updatedWorkout.calories = workout.calories;
 	
 		updatedWorkout.notes = workout.notes;
 
@@ -83,6 +84,7 @@ router.put('/workout/:id', (req, res, next) => {
     
 			var workouts = db.collection('workouts');
 			workouts.update({_id: ObjectId(req.params.id)},updatedWorkout,{}, function(err, data) {
+				console.log(err);
 			    res.send(data);
 			});
 	                

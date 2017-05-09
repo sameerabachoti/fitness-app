@@ -1,8 +1,9 @@
-<form name="form" (submit)="updateWorkout('590cca2b9a9cdc054bd4726f')">
+<form name="form" (submit)="updateWorkout()">
   <h2>Edit Workout</h2><br> 
   <div class="form-group">
     Name: <input type="text" [(ngModel)]="name" name="name" class="form-control">
     Category: <input type="text" [(ngModel)]="category" name="category" class="form-control">
+    Length: <input type="text" [(ngModel)]="length" name="category" class="form-control">
     Calories: <input type="text" [(ngModel)]="calories" name="calories" class="form-control">
     Notes: <input type="text" [(ngModel)]="notes" name="notes" class="form-control">
   </div>

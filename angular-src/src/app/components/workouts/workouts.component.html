@@ -1,14 +1,11 @@
 <h1>Your Workouts</h1>
-<a href="/new-workout" class="card-link">Add a New Workout</a>
+<a href="/new-workout" class="card-link">Add a New Workout</a><br><br>
 <div class="container">
   <div class="row" *ngFor="let workout of workouts">
     <div class="card card-block">
-      <h4 class="card-title">{{ workout.name }}</h4>
-      <p class="card-text">{{workout.category}}</p>
-      <p class="card-text">{{workout.calories}}</p>
-      <p class="card-text">{{workout.notes}}</p>
-      <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger"><br><br>
-      <input type="button" [routerLink]="['/update-workout', workout._id]" (click)="updateWorkout(workout._id)" value="Update" class="btn btn-primary">
+      <h4 class="card-title" [routerLink]="['/show-workout', workout._id]">{{ workout.name }}</h4><br><br>
+      <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger">
+      <hr>
       <br>
     </div>
   </div>
