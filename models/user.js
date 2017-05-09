@@ -9,11 +9,11 @@ const UserSchema = mongoose.Schema({
 	}, 
 	email: {
 		type: String,
-		required: true
+		required: true, 
 	}, 
 	username: {
 		type: String, 
-		required: true
+		required: true, 
 	}, 
 	password: {
 		type: String, 
@@ -53,4 +53,14 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		if(err) throw err; 
 		callback(null, isMatch);
 	});
+}
+
+module.exports.checkEmail = function(userEmail, callback){
+	var query = {email: userEmail}
+	User.findOne(query, callback);
+}
+
+module.exports.checkUsername = function(username, callback){
+	var query = {username: username}
+	User.findOne(query, callback);
 }

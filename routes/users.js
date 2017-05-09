@@ -23,6 +23,32 @@ router.post('/register', (req, res, next) => {
 	});
 });
 
+router.post('/check-username', (req, res, next) => {
+	var username = req.body.username; 
+
+	User.checkUsername(username, (err, userName) =>{
+		if(userName === null){
+			return res.json({success: true, msg: 'Username is not taken'}); 
+		}
+		else{
+			return res.json({success: false, msg: 'Username is already taken'});
+		}
+	});
+});
+
+router.post('/check-email', (req, res, next) => {
+	var email = req.body.email; 
+
+	User.checkEmail(email, (err, uniqueEmail) =>{
+		if(uniqueEmail === null){
+			return res.json({success: true, msg: 'Email is not taken'}); 
+		}
+		else{
+			return res.json({success: false, msg: 'Email is already taken'});
+		}
+	});
+});
+
 router.post('/authenticate', (req, res, next) => {
 	var username = req.body.username;
 	var password = req.body.password;
@@ -56,7 +82,6 @@ router.post('/authenticate', (req, res, next) => {
 		});
 
 	});
-
 	
 });
 

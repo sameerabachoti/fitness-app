@@ -23,6 +23,18 @@ export class AuthService {
   	return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers}).map(res => res.json());
   }
 
+  checkEmail(user){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/check-email', user, {headers: headers}).map(res => res.json());
+  }
+
+  checkUsername(user){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/check-username', user, {headers: headers}).map(res => res.json());
+  }
+
   storeUserData(token, user){
   	localStorage.setItem('id_token', token);
   	localStorage.setItem('user', JSON.stringify(user));
