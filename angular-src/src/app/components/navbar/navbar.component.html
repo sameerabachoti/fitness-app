@@ -14,11 +14,14 @@
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a [routerLink]="['/']">Home</a></li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-right">
+          <ul *ngIf="user" class="nav navbar-nav navbar-right">
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a [routerLink]="['/workouts']">Workouts</a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a (click)="onLogoutClick()" href="#">Logout</a></li>
+          </ul>
+
+          <ul *ngIf="!user" class="nav navbar-nav navbar-right">
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a [routerLink]="['/login']">Login</a></li>
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a [routerLink]="['/register']">Register</a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}"><a (click)="onLogoutClick()" href="#">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
