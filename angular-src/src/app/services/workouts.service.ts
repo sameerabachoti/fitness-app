@@ -23,14 +23,14 @@ export class WorkoutsService {
   }
 
   updateWorkout(workout){
-    console.log("hwoeiruou");
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('http://localhost:3000/workouts/workout/'+workout.id, JSON.stringify(workout),{headers:headers}).map(res => res.json());
+    return this.http.put('http://localhost:3000/workouts/workout/'+workout.id, JSON.stringify(workout),{headers:headers}).map(function(data) {
+      console.log(data);
+    });
   }
 
   getWorkout(id){
-    console.log("hi");
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:3000/workouts/workout/'+id).map(res => res.json());

@@ -38,9 +38,8 @@ export class NewWorkoutComponent implements OnInit {
       user_id: JSON.parse(localStorage.getItem("user"))["id"]
   	}
 
-    this.NewWorkoutService.addWorkout(workout).subscribe(task => {
-        this.workouts.push(task);
-        this.name = "";
+    this.NewWorkoutService.addWorkout(workout).subscribe(data => {
+        this.workouts.push(data);
     })
 
 

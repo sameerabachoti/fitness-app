@@ -55,7 +55,6 @@ export class UpdateWorkoutComponent extends WorkoutsComponent implements OnInit 
     if(_workout.id !== undefined && _workout.name !== undefined && _workout.category !== undefined && _workout.calories !== undefined && _workout.length !== undefined && _workout.notes !== undefined && _workout.user_id !== undefined){
       
       this.WorkoutsService.updateWorkout(_workout).subscribe(data => {
-
           this.flashMessage.show('Workout has been updated', {cssClass: 'alert-success', timeout: 5000});
       });
     }

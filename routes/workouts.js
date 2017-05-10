@@ -6,6 +6,7 @@ var config = require('../config/database');
 var Workout = require('../models/workout');
 MongoClient = require('mongodb').MongoClient;
 var {ObjectId} = require('mongodb');
+var dotenv = require('dotenv');
 
 
 router.post('/add-workout', (req, res, next) => {
@@ -21,9 +22,9 @@ router.post('/add-workout', (req, res, next) => {
 	Workout.addWorkout(workout, (err, workout) => {
 
 		if(err){
-			res.send({success: false, msg: 'Failed to add workout'});
+			res.status(500).send({success: false, msg: 'Failed to add workout'});
 		}else{
-			res.send({success: true, msg: 'Workout added.'});
+			res.status(200).send({success: true, msg: 'Workout added.'});
 		}
 	});
 });
@@ -52,6 +53,7 @@ router.get('/workout/:id', (req, res, next) => {
 	MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
     
 		var workouts = db.collection('workouts');
+
 		workouts.findOne({_id: ObjectId(req.params.id)}, function(err, data) {
 		    res.send(data);
 		});
@@ -84,14 +86,13 @@ router.put('/workout/:id', (req, res, next) => {
     
 			var workouts = db.collection('workouts');
 			workouts.update({_id: ObjectId(req.params.id)},updatedWorkout,{}, function(err, data) {
-				console.log(err);
-			    res.send(data);
+			    res.status(200).send(data);
 			});
 	                
 		});
 });
 
-//Delete Task 
+//Delete Workout 
 router.delete('/workout/:id', (req, res, next) => {
 	
 	MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
