@@ -16,6 +16,7 @@ export class WorkoutsComponent implements OnInit {
   calories: String; 
   length: String;
   notes: String;
+  date: String;
   user_id: Number;
 
   workouts: any = [];
@@ -31,7 +32,7 @@ export class WorkoutsComponent implements OnInit {
 
       var user = localStorage.getItem("user");
 
-      for(var i = 0; i < workouts.length; i++){
+      for(var i = workouts.length-1; i >= 0; i--){
         if(workouts[i].user_id === JSON.parse(user)["id"]){
           this.workouts.push(workouts[i]);
         }

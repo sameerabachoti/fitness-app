@@ -8,6 +8,7 @@ MongoClient = require('mongodb').MongoClient;
 var {ObjectId} = require('mongodb');
 var dotenv = require('dotenv');
 
+var date = new Date();
 
 router.post('/add-workout', (req, res, next) => {
 	var workout = new Workout({
@@ -16,6 +17,7 @@ router.post('/add-workout', (req, res, next) => {
 		length: req.body.length,
 		calories: req.body.calories, 
 		notes: req.body.notes,
+		date: date.toString().split(' ').slice(0, 4).join(' '),
 		user_id: req.body.user_id
 	});
 

@@ -19,6 +19,9 @@ var WorkoutSchema = mongoose.Schema({
 	notes: {
 		type: String 
 	}, 
+	date: {
+		type: String
+	},
 	user_id:{
 		type: String
 	}
