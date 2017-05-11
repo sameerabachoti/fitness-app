@@ -55,10 +55,9 @@ export class WorkoutsComponent implements OnInit {
             }
           }
         
-
-        this.flashMessage.show('Workout has been deleted', {cssClass: 'alert-success', timeout: 5000});
     });
     window.location.reload();
+    this.flashMessage.show('Workout has been deleted', {cssClass: 'alert-success', timeout: 5000});
   }
 
   
