@@ -26,7 +26,7 @@ export class WorkoutsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.put('http://localhost:3000/workouts/workout/'+workout.id, JSON.stringify(workout),{headers:headers}).map(function(data) {
-      console.log(data);
+      return data;
     });
   }
 

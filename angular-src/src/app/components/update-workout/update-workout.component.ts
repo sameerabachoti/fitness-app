@@ -17,6 +17,7 @@ export class UpdateWorkoutComponent extends WorkoutsComponent implements OnInit 
   calories: String; 
   length: String; 
   notes: String;
+  status: Number; 
 
   constructor(public WorkoutsService:WorkoutsService,
  router:Router, 
@@ -55,14 +56,24 @@ export class UpdateWorkoutComponent extends WorkoutsComponent implements OnInit 
     if(_workout.id !== undefined && _workout.name !== undefined && _workout.category !== undefined && _workout.calories !== undefined && _workout.length !== undefined && _workout.notes !== undefined && _workout.user_id !== undefined){
       
       this.WorkoutsService.updateWorkout(_workout).subscribe(data => {
-          this.flashMessage.show('Workout has been updated', {cssClass: 'alert-success', timeout: 5000});
-      });
+
+        this.status = data.status;
+
+           if(this.status === 200){
+              this.workouts.push(data);
+              this.flashMessage.show('Workout has been updated. Status: '+this.status, {cssClass: 'alert-success', timeout: 5000});
+           }
+           else{
+              this.flashMessage.show('Error. Workout has not been updated. Status: '+ this.status, {cssClass: 'alert-success', timeout: 5000});
+           }
+          
+        });
     }
     else{
          this.flashMessage.show('Please fill all fields', {cssClass: 'alert-danger', timeout: 5000});
     }
-    this.router.navigate(['workouts']);
-    window.location.reload();
+    //this.router.navigate(['workouts']);
+    //window.location.reload();
 
   }
 

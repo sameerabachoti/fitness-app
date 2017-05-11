@@ -16,6 +16,7 @@ export class NewWorkoutComponent implements OnInit {
   calories: String; 
   length: String;
   notes: String;
+  status: Number;
 
   workouts: any = [];
 
@@ -38,18 +39,26 @@ export class NewWorkoutComponent implements OnInit {
       user_id: JSON.parse(localStorage.getItem("user"))["id"]
   	}
 
-    this.NewWorkoutService.addWorkout(workout).subscribe(data => {
-        this.workouts.push(data);
-    })
+    if(workout.name !== undefined && workout.category !== undefined && workout.calories !== undefined && workout.length !== undefined && workout.notes !== undefined && workout.user_id !== undefined){
 
 
-      this.flashMessage.show('Workout has been added', {cssClass: 'alert-success', timeout: 5000});
-      this.router.navigate(['workouts']);
-      window.location.reload();
+      this.NewWorkoutService.addWorkout(workout).subscribe(data => {
+        
+        this.status = data.status;
 
-  
-      //this.flashMessage.show('Workout has not been added', {cssClass: 'alert-danger', timeout: 5000});
-      //this.router.navigate(['new-workout']);
+         if(this.status === 200){
+            this.workouts.push(data);
+            this.flashMessage.show('Workout has been added. Status: '+this.status, {cssClass: 'alert-success', timeout: 5000});
+         }
+         else{
+            this.flashMessage.show('Error. Workout has not been added. Status: '+ this.status, {cssClass: 'alert-success', timeout: 5000});
+         }
+      });
+
+   }
+   else{
+      this.flashMessage.show('Please fill all fields', {cssClass: 'alert-danger', timeout: 5000});
+   }
 
   }
 

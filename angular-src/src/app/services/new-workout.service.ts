@@ -20,7 +20,7 @@ export class NewWorkoutService {
   	headers.append('Content-Type', 'application/json');
 
   	return this.http.post('http://localhost:3000/workouts/add-workout', JSON.stringify(workout),{headers:headers}).map(function(data) {
-      console.log(data);
+       return data;
     });
   }
 

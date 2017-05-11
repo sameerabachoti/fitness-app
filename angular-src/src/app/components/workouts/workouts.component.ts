@@ -19,9 +19,6 @@ export class WorkoutsComponent implements OnInit {
   notes: String;
   date: String;
   user_id: Number;
-  busy: Boolean;
-  page: Number;
-  step: Number;
   
   workouts: any = [];
   data: any = [];
