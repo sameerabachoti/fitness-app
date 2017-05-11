@@ -6,8 +6,7 @@
 		    (scrolled)="onScrollDown()">
   <div class="row" *ngFor="let workout of workouts">
       <h4 class="card-title" [routerLink]="['/show-workout', workout._id]">{{ workout.name }}</h4>
-      <p class="card-title">{{ workout.date }}</p><br>
-      <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger">
+      <p class="card-title">{{ workout.date }} <input type="button" (click)="deleteWorkout(workout._id)" value="Delete" class="btn btn-danger delete"></p><br>
       <hr>
       <br>
     </div>
