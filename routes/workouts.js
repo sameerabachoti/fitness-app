@@ -34,7 +34,7 @@ router.post('/add-workout', (req, res, next) => {
 //Get all workouts
 router.get('/workouts', (req, res, next) => {
 	
-	MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
+	MongoClient.connect(process.env.DB_URL, function (err, db) {
     
 		var workouts = db.collection('workouts');
 
@@ -52,7 +52,7 @@ router.get('/workouts', (req, res, next) => {
 //Get single workout
 router.get('/workout/:id', (req, res, next) => {
 	
-	MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
+	MongoClient.connect(process.env.DB_URL, function (err, db) {
     
 		var workouts = db.collection('workouts');
 
@@ -81,10 +81,12 @@ router.put('/workout/:id', (req, res, next) => {
 	
 		updatedWorkout.notes = workout.notes;
 
+		updatedWorkout.date = date.toString().split(' ').slice(0, 4).join(' ')
+
 		updatedWorkout.user_id = workout.user_id;
 	
 
-		MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
+		MongoClient.connect(process.env.DB_URL, function (err, db) {
     
 			var workouts = db.collection('workouts');
 			workouts.update({_id: ObjectId(req.params.id)},updatedWorkout,{}, function(err, data) {
@@ -97,7 +99,7 @@ router.put('/workout/:id', (req, res, next) => {
 //Delete Workout 
 router.delete('/workout/:id', (req, res, next) => {
 	
-	MongoClient.connect("mongodb://localhost:27017/fitness-app", function (err, db) {
+	MongoClient.connect(process.env.DB_URL, function (err, db) {
     
 		var col = db.collection('workouts');
 		col.remove({_id: ObjectId(req.params.id)}, function(err, cursor) {

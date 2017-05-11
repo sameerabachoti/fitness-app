@@ -1,5 +1,6 @@
-//database's name is meanauth
+require('dotenv').config();
+
 module.exports = {
-	database: 'mongodb://localhost:27017/fitness-app', 
-	secret: 'yoursecret'
+	database: process.env.DB_URL, 
+	secret: process.env.DB_SECRET
 }
