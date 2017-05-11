@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkoutsService } from '../../services/workouts.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-workouts',
@@ -18,8 +19,12 @@ export class WorkoutsComponent implements OnInit {
   notes: String;
   date: String;
   user_id: Number;
-
+  busy: Boolean;
+  page: Number;
+  step: Number;
+  
   workouts: any = [];
+  data: any = [];
 
   constructor(public WorkoutsService:WorkoutsService,
   public router:Router, 
@@ -27,18 +32,20 @@ export class WorkoutsComponent implements OnInit {
 
   ngOnInit() {
 
-  	// Retrieve workouts from the API
     this.WorkoutsService.getAllWorkouts().subscribe(workouts => {
 
       var user = localStorage.getItem("user");
 
       for(var i = workouts.length-1; i >= 0; i--){
         if(workouts[i].user_id === JSON.parse(user)["id"]){
-          this.workouts.push(workouts[i]);
+          this.data.push(workouts[i]);
         }
       }
 
+      this.workouts = this.data.slice(0,3);
+
     });
+
   }
 
   deleteWorkout(id){
@@ -55,6 +62,11 @@ export class WorkoutsComponent implements OnInit {
         this.flashMessage.show('Workout has been deleted', {cssClass: 'alert-success', timeout: 5000});
     });
     window.location.reload();
+  }
+
+  
+  onScrollDown() {
+      this.workouts = this.data.slice(0, this.workouts.length + 5);
   }
 
 }
